@@ -1,1 +1,1 @@
-web: python authorization/manage.py runserver 0.0.0.0:$PORT
+web: gunicorn authorization.wsgi --log-file -
