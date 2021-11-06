@@ -27,7 +27,8 @@ SECRET_KEY = '!@8#6n!sj+#r@3!)3$&g7@v6prvi%o+hnk!vz05_1f#yz&xb&s'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'https://charlieauth0.herokuapp.com/'
+    'https://charlieauth0.herokuapp.com/',
+    'charlieauth0.herokuapp.com'
 ]
 
 
