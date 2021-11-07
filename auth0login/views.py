@@ -37,3 +37,7 @@ def logout(request):
     logout_url = 'https://%s/v2/logout?client_id=%s&%s' % \
                  (settings.SOCIAL_AUTH_AUTH0_DOMAIN, settings.SOCIAL_AUTH_AUTH0_KEY, return_to)
     return HttpResponseRedirect(logout_url)
+
+def v2search(request):
+    user = request.user
+    auth0user = auth0user.uid
