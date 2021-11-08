@@ -88,7 +88,7 @@ JWT_AUTH = {
     'JWT_DECODE_HANDLER':
         'auth0authorization.utils.jwt_decode_token',
     'JWT_ALGORITHM': 'RS256',
-    'JWT_AUDIENCE': 'https://logins_count',
+    'JWT_AUDIENCE': 'https://dev-aykh4rgv.us.auth0.com/api/v2/',
     'JWT_ISSUER': 'https://dev-aykh4rgv.us.auth0.com/',
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
 }
@@ -183,6 +183,3 @@ AUTHENTICATION_BACKENDS = [
 LOGIN_URL = '/login/auth0'
 LOGIN_REDIRECT_URL = '/dashboard'
 
-# # Configure Django App for Heroku.
-# import django_heroku
-# django_heroku.settings(locals())
