@@ -42,7 +42,6 @@ def v2search(request):
     user = request.user
     auth0user = user.social_auth.get(provider='auth0')
 
-# auth0authorization/views.py
 
 # from functools import wraps
 # import jwt
