@@ -17,6 +17,18 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from auth0login import views
+import http.client
+
+conn = http.client.HTTPSConnection("")
+
+headers = { 'authorization': "Bearer YOUR_MGMT_API_ACCESS_TOKEN" }
+
+conn.request("GET", "/dev-aykh4rgv.us.auth0.com/api/v2/users/USER_ID", headers=headers)
+
+res = conn.getresponse()
+data = res.read()
+
+print(data.decode("utf-8"))
 
 urlpatterns = [
     path('', views.index),
@@ -24,6 +36,9 @@ urlpatterns = [
     path('logout', views.logout),
     path('', include('django.contrib.auth.urls')),
     path('', include('social_django.urls')),
+    path('api/public', views.public),
+    path('api/private', views.private),
+    path('api/private-scoped', views.private_scoped),
     path('api/v2/users/{id}', views.v2search)
 ]
 
