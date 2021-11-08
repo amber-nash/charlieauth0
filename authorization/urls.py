@@ -36,6 +36,9 @@ urlpatterns = [
     path('logout', views.logout),
     path('', include('django.contrib.auth.urls')),
     path('', include('social_django.urls')),
+    path('api/public', views.public),
+    path('api/private', views.private),
+    path('api/private-scoped', views.private_scoped),
     path('api/v2/users/{id}', views.v2search)
 ]
 
