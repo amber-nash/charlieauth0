@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',
     'auth0login',
-    'rest_framework',
     'authorization'
 ]
 
