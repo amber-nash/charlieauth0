@@ -6,7 +6,6 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from urllib.parse import urlencode
 import json
-import rest_framework
 
 
 def index(request):
