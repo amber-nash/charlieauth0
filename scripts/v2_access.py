@@ -1,46 +1,12 @@
-def main():
-  import json, requests
-  from requests.exceptions import RequestException, HTTPError, URLRequired
+import http.client
 
-  # Configuration Values
-  domain = 'YOUR_DOMAIN'
-  audience = f'https://{domain}/api/v2/'
-  client_id = 'YOUR_CLIENT_ID'
-  client_secret = 'YOUR_CLIENT_SECRET'
-  grant_type = "client_credentials" # OAuth 2.0 flow to use
+conn = http.client.HTTPConnection("path_to_your_api")
 
-  # Get an Access Token from Auth0
-  base_url = f"https://{domain}"
-  payload =  { 
-    'grant_type': grant_type,
-    'client_id': client_id,
-    'client_secret': client_secret,
-    'audience': audience,
-    'logins_count': logins_count
-  }
-  response = requests.post(f'{base_url}/oauth/token', data=payload)
-  oauth = response.json()
-  access_token = oauth.get('access_token')
+headers = { 'authorization': "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkZaWExBdWRnelFOWldIZkZSdTVIcCJ9.eyJpc3MiOiJodHRwczovL2Rldi1heWtoNHJndi51cy5hdXRoMC5jb20vIiwic3ViIjoidDFYVW84enNzSEdnQkJpSURlVWlHQk05bjhFSGxwc0tAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vZGV2LWF5a2g0cmd2LnVzLmF1dGgwLmNvbS9hcGkvdjIvIiwiaWF0IjoxNjM2NDAxNTkwLCJleHAiOjE2MzY0ODc5OTAsImF6cCI6InQxWFVvOHpzc0hHZ0JCaUlEZVVpR0JNOW44RUhscHNLIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.JcjTI1URVsj77x1xeqLO3bmnTZatdCw646NMW8_flDAC0m3snjdTylD67wMJNmQZpPqWGABI-Pxe5uLTdxLieSP-Nbe70QbuQ3G22HZpzk7Pi0EixaiLgvNy2xkpKRm0c1rMQW2F3iGsVMRBC0i8gj_ZaBBNmghw1ycAcv3hoxuJB4izSoAHiiw18zTO2SWH1RDhprDnkJFIej23KlJ-TlE01wWBpHxpVKMuIm1VxepWxoeTqcqk1k7X1iKPCTFtskpXod-AP0CbsFDzMOcFL0PxVud75kLcB99cYp6hePuhsSoqRrW06DjnSJHhQRF5TBr96NirEe59AUZJ8nuOTA" }
 
-  # Add the token to the Authorization header of the request
-  headers = {
-    'Authorization': f'Bearer {access_token}',
-    'Content-Type': 'application/json'
-  }
+conn.request("GET", "/", headers=headers)
 
-  # Get all Applications using the token
-  try:
-    res = requests.get(f'{base_url}/api/v2/clients', headers=headers)
-    print(res.json())
-  except HTTPError as e:
-    print(f'HTTPError: {str(e.code)} {str(e.reason)}')
-  except URLRequired as e:
-    print(f'URLRequired: {str(e.reason)}')
-  except RequestException as e:
-    print(f'RequestException: {e}')
-  except Exception as e:
-    print(f'Generic Exception: {e}')
+res = conn.getresponse()
+data = res.read()
 
-# Standard boilerplate to call the main() function.
-if __name__ == '__main__':
-  main()
+print(data.decode("utf-8"))
