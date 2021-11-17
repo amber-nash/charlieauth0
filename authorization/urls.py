@@ -19,16 +19,6 @@ from django.conf.urls import include
 from auth0login import views
 import http.client
 
-# conn = http.client.HTTPSConnection("")
-
-# headers = { 'authorization': "Bearer YOUR_MGMT_API_ACCESS_TOKEN" }
-
-# conn.request("GET", "/dev-aykh4rgv.us.auth0.com/api/v2/users/USER_ID", headers=headers)
-
-# res = conn.getresponse()
-# data = res.read()
-
-# print(data.decode("utf-8"))
 
 urlpatterns = [
     path('', views.index),
